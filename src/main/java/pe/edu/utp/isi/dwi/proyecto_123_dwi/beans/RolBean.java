@@ -1,5 +1,7 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.util.List;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -7,8 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Rol;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.RolFacade;
-
-import java.util.List;
 
 @Named
 @RequestScoped
@@ -19,6 +19,7 @@ public class RolBean {
 
     private Rol rol = new Rol(); // Objeto actual para guardar/editar
     private List<Rol> listaRoles; // Lista de roles visibles en la tabla
+    @SuppressWarnings("unused")
     private String rolActual; // Rol del colaborador logueado
     
     

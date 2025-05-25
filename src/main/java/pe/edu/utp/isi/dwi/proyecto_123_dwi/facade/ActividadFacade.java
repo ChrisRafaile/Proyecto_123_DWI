@@ -1,13 +1,11 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.facade;
 
+import java.util.List;
+
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.dao.ActividadDAO;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Actividad;
-
-import java.util.List;
 
 @Stateless
 public class ActividadFacade {

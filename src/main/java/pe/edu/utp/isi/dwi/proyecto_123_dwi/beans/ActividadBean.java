@@ -1,6 +1,13 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -9,20 +16,12 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Actividad;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Asignacion;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Solicitud;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ActividadFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.AsignacionFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.SolicitudFacade;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SendGridService;
 
 @Named
@@ -72,7 +71,6 @@ public class ActividadBean implements Serializable {
             actividades = new ArrayList<>();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudieron cargar las actividades."));
-            e.printStackTrace();
         }
     }
 
@@ -118,7 +116,6 @@ public class ActividadBean implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo guardar la actividad."));
-            e.printStackTrace();
         }
     }
 
@@ -141,10 +138,9 @@ public class ActividadBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Solicitud finalizada exitosamente."));
             FacesContext.getCurrentInstance().getExternalContext().redirect("control_solicitud.xhtml?faces-redirect=true");
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo finalizar la solicitud."));
-            e.printStackTrace();
         }
     }
     
@@ -183,7 +179,6 @@ public class ActividadBean implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo enviar el correo de finalización."));
-            e.printStackTrace();
         }
     }
 

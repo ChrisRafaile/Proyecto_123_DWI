@@ -1,10 +1,9 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.facade;
 
+import java.util.List;
+
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
-import java.util.List;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.dao.ClienteDAO;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 

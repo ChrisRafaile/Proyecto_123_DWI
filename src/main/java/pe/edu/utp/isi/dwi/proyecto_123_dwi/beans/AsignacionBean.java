@@ -1,5 +1,10 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -12,10 +17,6 @@ import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Solicitud;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.AsignacionFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ColaboradorFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.SolicitudFacade;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Named
 @SessionScoped
@@ -126,10 +127,9 @@ public class AsignacionBean implements Serializable {
 
             // Redirigir a control_actividad.xhtml
             FacesContext.getCurrentInstance().getExternalContext().redirect("control_actividad.xhtml");
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo redirigir: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
 

@@ -1,5 +1,12 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -9,12 +16,6 @@ import jakarta.servlet.http.Part;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ColaboradorFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
-
-import java.io.File;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
 @Named
 @SessionScoped
@@ -96,10 +97,9 @@ public class ColaboradorSesionBean implements Serializable {
 
             return "perfil_colaborador.xhtml?faces-redirect=true";
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudieron actualizar los datos."));
-            e.printStackTrace();
             return null;
         }
     }

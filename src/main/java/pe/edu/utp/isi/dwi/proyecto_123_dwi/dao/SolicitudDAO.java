@@ -1,18 +1,15 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Solicitud;
-
 import java.util.List;
 import java.util.Map;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Solicitud;
 
 public class SolicitudDAO {
 
@@ -101,7 +98,6 @@ public class SolicitudDAO {
             return conteoPorMes;
 
         } catch (Exception e) {
-            e.printStackTrace();
             return Collections.emptyMap(); // Retornar un mapa vacío en caso de error
         }
     }
@@ -131,10 +127,7 @@ public class SolicitudDAO {
             return conteoPorAnio;
 
         } catch (Exception e) {
-            e.printStackTrace();
             return Collections.emptyMap(); // Retornar un mapa vacío en caso de error
         }
     }
-
-
 }

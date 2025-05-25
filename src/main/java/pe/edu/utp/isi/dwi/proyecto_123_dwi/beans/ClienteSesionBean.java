@@ -1,16 +1,18 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
-import java.io.File;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ClienteFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
@@ -27,6 +29,7 @@ public class ClienteSesionBean implements Serializable {
     @Inject
     private ClienteFacade clienteFacade;
 
+    @SuppressWarnings("unused")
     private static final String FOTO_POR_DEFECTO = "/resources/images/foto_perfil_default.jpg";
 
     /**
@@ -85,10 +88,9 @@ public class ClienteSesionBean implements Serializable {
 
             return "perfil_cliente.xhtml?faces-redirect=true"; // Redirige al perfil
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudieron actualizar los datos."));
-            e.printStackTrace();
             return null; // Permanece en la misma página en caso de error
         }
     }
@@ -140,9 +142,8 @@ public class ClienteSesionBean implements Serializable {
             } else {
                 System.out.println("No se seleccionó ningún archivo para subir.");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error al subir el archivo: " + e.getMessage());
-            e.printStackTrace();
         }
     }
     

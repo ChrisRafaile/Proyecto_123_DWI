@@ -16,8 +16,7 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {
     "/faces/colaborador/control_rol.xhtml",
-    "/faces/colaborador/control_dashboard.xhtml",
-     "/faces/colaborador/registro_colaborador.xhtml",
+    "/faces/colaborador/control_dashboard.xhtml"
 })
 
 public class RolFilter implements Filter {

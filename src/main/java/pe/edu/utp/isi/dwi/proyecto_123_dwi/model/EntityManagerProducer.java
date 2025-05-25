@@ -11,7 +11,7 @@ import jakarta.persistence.Persistence;
 @ApplicationScoped
 public class EntityManagerProducer {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto_123_DWI");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto_123_DWI");
 
     @Produces
     public EntityManager produceEntityManager() {

@@ -1,11 +1,12 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.Serializable;
+import java.util.Map;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.io.Serializable;
-import java.util.Map;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.SolicitudFacade;
 
 @Named
@@ -60,7 +61,6 @@ public class DashboardBean implements Serializable {
                 "}";
 
         } catch (Exception e) {
-            e.printStackTrace();
             pieChartData = "{}";
         }
     }
@@ -101,7 +101,6 @@ public class DashboardBean implements Serializable {
                 "}";
 
         } catch (Exception e) {
-            e.printStackTrace();
             barChartData = "{}";
         }
     }

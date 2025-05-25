@@ -1,5 +1,13 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
@@ -11,14 +19,6 @@ import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ClienteFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SendGridService;
-
-import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
 
 @Named
 @RequestScoped
@@ -81,7 +81,6 @@ public class ClienteRegistroBean {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo registrar el cliente: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
 
@@ -106,7 +105,6 @@ public class ClienteRegistroBean {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "El cliente fue registrado, pero no se pudo enviar el correo de bienvenida."));
-            e.printStackTrace();
         }
     }
 

@@ -1,5 +1,15 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -9,14 +19,6 @@ import jakarta.servlet.http.Part;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Solicitud;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.SolicitudFacade;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.nio.file.*;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.time.format.DateTimeFormatter;
 
 @Named
 @SessionScoped
@@ -75,10 +77,9 @@ public class SolicitudClienteBean implements Serializable {
             solicitud = new Solicitud();
             imagenFile = null;
             cargarSolicitudes(); // Actualizar la lista
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo registrar la solicitud: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
 

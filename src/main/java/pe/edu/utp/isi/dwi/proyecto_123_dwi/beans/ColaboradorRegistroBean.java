@@ -1,19 +1,5 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.persistence.TypedQuery;
-import jakarta.servlet.http.Part;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Rol;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ColaboradorFacade;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.RolFacade;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +8,19 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.Part;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Rol;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ColaboradorFacade;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.RolFacade;
+import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
 
 @Named
 @RequestScoped
@@ -81,10 +80,9 @@ public class ColaboradorRegistroBean implements Serializable {
         } catch (IllegalArgumentException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo registrar el colaborador: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
 

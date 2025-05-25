@@ -1,5 +1,8 @@
 package pe.edu.utp.isi.dwi.proyecto_123_dwi.beans;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -10,9 +13,6 @@ import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Colaborador;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ClienteFacade;
 import pe.edu.utp.isi.dwi.proyecto_123_dwi.facade.ColaboradorFacade;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.util.SecurityUtils;
-
-import java.io.Serializable;
 
 @Named
 @SessionScoped
@@ -33,6 +33,7 @@ public class LoginBean implements Serializable {
     @Inject
     private ColaboradorSesionBean colaboradorSesionBean;
     
+    @SuppressWarnings("unused")
     @Inject
     private RolBean rolBean; // Inyecta RolBean
     
@@ -72,7 +73,6 @@ public class LoginBean implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ocurrió un error al iniciar sesión: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
 
@@ -85,21 +85,17 @@ public class LoginBean implements Serializable {
             FacesContext.getCurrentInstance()
                         .getExternalContext()
                         .redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/login.xhtml");
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo cerrar la sesión: " + e.getMessage()));
-            e.printStackTrace();
         }
     }
-
-
-
 
     private void redirigir(String ruta) {
         try {
             String contextPath = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
             FacesContext.getCurrentInstance().getExternalContext().redirect(contextPath + ruta);
-        } catch (Exception e) {
+        } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo redirigir: " + e.getMessage()));
         }

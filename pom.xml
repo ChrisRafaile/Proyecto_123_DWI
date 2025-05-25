@@ -10,8 +10,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <!-- Actualizado a Java 17 con la opción 'release' -->
+        <maven.compiler.release>17</maven.compiler.release>
         <jakartaee.version>10.0.0</jakartaee.version>
     </properties>
     
@@ -53,12 +53,14 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- OmniFaces -->
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
             <version>4.0</version>
         </dependency>
         
+        <!-- Jakarta Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -66,14 +68,14 @@
             <scope>provided</scope>
         </dependency>
         
-        <!-- api para correo -->
+        <!-- API para correo (SendGrid) -->
         <dependency>
             <groupId>com.sendgrid</groupId>
             <artifactId>sendgrid-java</artifactId>
             <version>4.9.3</version>
         </dependency>
         
-        <!-- json -->
+        <!-- JSON con Gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -81,8 +83,6 @@
         </dependency>
     </dependencies>
   
-   
-    
     <build>
         <plugins>
             <!-- Maven Compiler Plugin -->
@@ -91,8 +91,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <release>${maven.compiler.release}</release>
                 </configuration>
             </plugin>
 
@@ -105,7 +104,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
         </plugins>
     </build>
 </project>

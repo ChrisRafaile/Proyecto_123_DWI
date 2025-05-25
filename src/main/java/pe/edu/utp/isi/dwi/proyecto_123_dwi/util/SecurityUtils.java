@@ -1,16 +1,9 @@
 package  pe.edu.utp.isi.dwi.proyecto_123_dwi.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import pe.edu.utp.isi.dwi.proyecto_123_dwi.entities.Cliente;
 
 public class SecurityUtils {
 

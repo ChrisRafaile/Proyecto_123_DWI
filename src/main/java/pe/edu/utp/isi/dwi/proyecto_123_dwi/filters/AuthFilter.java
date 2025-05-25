@@ -19,33 +19,32 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         HttpSession session = httpRequest.getSession(false);
+        String requestedPath = httpRequest.getRequestURI();
 
-        // Verificar si hay una sesión activa con usuario autenticado
         boolean clienteAutenticado = session != null && session.getAttribute("clienteSesion") != null;
         boolean colaboradorAutenticado = session != null && session.getAttribute("colaboradorSesion") != null;
 
-        String requestedPath = httpRequest.getRequestURI();
+        // ✅ Permitir acceso a registro_colaborador.xhtml sin sesión
+        if (requestedPath.contains("registro_colaborador.xhtml")) {
+            chain.doFilter(request, response);
+            return;
+        }
 
-        // Mensajes de depuración
-        System.out.println("Requested Path: " + requestedPath);
-        System.out.println("Session: " + session);
-        System.out.println("Cliente autenticado: " + clienteAutenticado);
-        System.out.println("Colaborador autenticado: " + colaboradorAutenticado);
-
-        // Si no está autenticado y está accediendo a rutas protegidas
-        if ((!clienteAutenticado && requestedPath.contains("/cliente/")) ||
-            (!colaboradorAutenticado && requestedPath.contains("/colaborador/"))) {
-            System.out.println("Redirigiendo a login.xhtml");
+        // 🔒 Restringir si accede a zonas protegidas sin sesión
+        if ((!clienteAutenticado && requestedPath.contains("/cliente/"))
+                || (!colaboradorAutenticado && requestedPath.contains("/colaborador/"))) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.xhtml");
             return;
         }
 
-        // Continuar con la cadena de filtros
+        // ✔ Continuar si tiene sesión válida
         chain.doFilter(request, response);
     }
 
